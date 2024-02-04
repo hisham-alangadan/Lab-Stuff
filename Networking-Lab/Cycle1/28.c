@@ -14,16 +14,19 @@ int main()
         return 1;
     }
 
+    int count = 0;
     FILE *desination = fopen(DESTINATION_FILE, "w");
 
     char buffer;
     while ((buffer = fgetc(source)) != EOF)
     {
         fputc(buffer, desination);
+        count++;
     }
     fflush(desination);
 
-    printf("New file created.");
+    printf("New file created.\n");
+    printf("The number of bytes copied is %d.", sizeof(char) * count);
     while (getchar() != '\n')
         ;
     unlink(DESTINATION_FILE);
